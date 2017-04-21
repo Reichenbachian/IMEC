@@ -52,7 +52,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'PeabodyFrontend.urls'
+ROOT_URLCONF = 'IMEC.urls'
 
 TEMPLATES = [
     {
@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'PeabodyFrontend.wsgi.application'
+WSGI_APPLICATION = 'IMEC.wsgi.application'
 
 
 # Database
@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'PeabodyFrontend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'imecTest', # os.path.join(BASE_DIR, 'db.sqlite3'),
-        'USER': 'root',
-        'PASSWORD': '',
+        'NAME': 'imec', # os.path.join(BASE_DIR, 'db.sqlite3'),
+        'USER': 'django',
+        'PASSWORD': 'django_password',
         'HOST': 'localhost',
         'PORT': '3306'
     }

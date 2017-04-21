@@ -9,7 +9,7 @@ def index(request):
 	"""
 
 	# Render the HTML template index.html with the data in the context variable
-	return render(request, 'index.html')
+	return render(request, 'dashboard/index.html')
 
 
 def test(request):
