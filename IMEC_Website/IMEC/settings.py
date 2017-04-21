@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'IMEC.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'imec', # os.path.join(BASE_DIR, 'db.sqlite3'),
-        'USER': 'django',
-        'PASSWORD': 'django_password',
+        'NAME': 'imecTest', # os.path.join(BASE_DIR, 'db.sqlite3'),
+        'USER': 'root',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306'
     }
