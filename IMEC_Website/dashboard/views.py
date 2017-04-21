@@ -11,6 +11,10 @@ def index(request):
 	# Render the HTML template index.html with the data in the context variable
 	return render(request, 'index.html')
 
+
+def test(request):
+	return render(request, "test.html")
+
 def getSearchResults(request, limit=10):
 	# try:
 	query = request.POST.get("queryBar")

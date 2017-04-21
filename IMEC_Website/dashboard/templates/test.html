@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <meta content="chrome=1" http-equiv="X-UA-Compatible">
+                <title>
+                    QuaggaJS, an advanced barcode-reader written in JavaScript
+                </title>
+                <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+                <meta content="This project is maintained by Christoph Oberhofer" name="copyright"/>
+                <meta content="QuaggaJS is an advanced barcode-reader written in JavaScript" name="description"/>
+                <meta content="barcode, javascript, canvas, computer vision, image processing, ean, code128" name="keywords"/>
+                <meta content="index,follow" name="robots"/>
+                <script src="//code.jquery.com/jquery-1.11.0.min.js">
+                </script>
+                <script src="{% static 'dashboard/js/quagga.min.js' %}">
+                </script>
+                <script src="{% static 'dashboard/js/file_input.js' %}">
+                </script>
+                <link href="https://serratus.github.io/examples/file_input.html" rel="canonical"/>
+                <link href="https://serratus.github.io/quaggaJS/stylesheets/styles.css" rel="stylesheet"/>
+                <link href="https://serratus.github.io/quaggaJS/stylesheets/example.css" rel="stylesheet"/>
+                <link href="https://serratus.github.io/quaggaJS/stylesheets/pygment_trac.css" rel="stylesheet"/>
+                <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport">
+                </meta>
+            </meta>
+        </meta>
+    </head>
+    <body>
+        <div class="wrapper">
+            <section class="container" id="container">
+                <div class="controls">
+                    <fieldset class="input-group">
+                        <input accept="image/*;capture=camera" type="file"/>
+                        <button>
+                            Rerun
+                        </button>
+                    </fieldset>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>
+<!-- <script src="https://serratus.github.io/quaggaJS/javascripts/scale.fix.js"></script> -->
