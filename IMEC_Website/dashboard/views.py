@@ -13,7 +13,7 @@ def index(request):
 
 
 def test(request):
-	return render(request, "test.html")
+	return render(request, "dashboard/test.html")
 
 def getSearchResults(request, limit=10):
 	# try:
