@@ -11,6 +11,11 @@ def index(request):
 	# Render the HTML template index.html with the data in the context variable
 	return render(request, 'dashboard/index.html')
 
+def scan(request):
+	return render(request, 'dashboard/scan.html')
+
+def search(request):
+	return render(request, 'dashboard/search.html')
 
 def test(request):
 	return render(request, "dashboard/test.html")
