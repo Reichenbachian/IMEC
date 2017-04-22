@@ -6,7 +6,18 @@ function createNewBox(lotO, refO){ //lotO
   
   var newObject = {};
   
-  var fromL = lotO.indexOf("10")+2; //start of Lot number
+  //lot number is in between 10 and 30, and is 7 char long. indexOf(10) might give you the wrong ten!
+  
+  for(int i=0; i<lotO.length; i++){    
+    var fromL = lotO.indexOf("10")+2; //start of Lot number 
+    i = fromL; 
+    
+    if(lotO.charAt(fromL+9)&&
+
+  
+  
+  
+  var fromL = lotO.indexOf("10")+2; //start of Lot number  
   var toL = fromL+8; //end of Lot number (7 char)
   var lot = lotO.substring(fromL,toL); // picking out the lot from the string of characters
   newObject.lot = lot;
