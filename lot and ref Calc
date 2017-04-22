@@ -1,0 +1,27 @@
+<script type="text/javascript">
+
+
+
+function createNewBox(lotO, refO){ //lotO 
+  
+  var newObject = {};
+  
+  
+  if(){  bd
+   newObject.
+  }
+  else{
+    newObject.
+  }
+  
+  if(){ 
+   newObject.
+  }
+  else{
+    newObject.
+  }
+  
+  return newObject;
+}
+
+</script>
