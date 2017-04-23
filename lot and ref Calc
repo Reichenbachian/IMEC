@@ -1,0 +1,60 @@
+
+<script type="text/javascript">
+
+
+
+
+
+
+
+
+
+
+function createNewBox(lotO, refO){ //lotO 
+
+  
+
+  var newObject = {};
+
+  
+
+  //lot number is in between 10 and 30, and is 7 char long. indexOf(10) might give you the wrong ten!
+
+  
+
+  for(int i=0; i<lotO.length; i++){    
+
+    var fromL = lotO.indexOf("10")+2; //start of Lot number 
+
+    i = fromL; 
+
+    
+
+    if(lotO.charAt(fromL+9)==“3” && lotO.charAt(fromL+10)==“0”){
+      var toL = fromL+8; //end of Lot number (7 char)
+      var lot = lotO.substring(fromL,toL); // picking out the lot from the string of characters
+      break;
+    }
+
+  }
+  newObject.lot = lot;
+
+  
+
+  var fromR = 9; //all ref numbers start at index 9, (real position 10)
+
+  var toR = fromR+6; //end of Ref number, (6 char)
+
+  var ref = lotO.substring(fromL,toL); // picking out the lot from the string of characters
+
+  newObject.ref = ref;
+
+
+  return newObject;
+
+}
+
+
+
+
+</script>
