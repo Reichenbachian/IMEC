@@ -28,14 +28,14 @@
     </head>
 
     <body>
-        <a href='/login'>Employee login</a>
-
         <div class='container' align='center'>
-            <h1>You have reached index.html</h1>
-            <h3>This will become the site's landing page</h3>
-            <br/>
-            <a class='btn btn-primary' href='/scan'>Scan</a>
-            <a class='btn btn-primary' href='/search'>Search</a>
+            {% if user.is_authenticated %}
+                <p>User currently logged in: {{ user.username }}</p>
+            {% else %}
+                <p>no user logged in</p>
+            {% endif %}
+            <h1>You have reached employee.html</h1>
+            <h3>This will become the page that creates volunteer ids</h3>
         </div>
     </body>
 </html>

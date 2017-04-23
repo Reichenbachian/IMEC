@@ -1,4 +1,4 @@
-"""PeabodyFrontend URL Configuration
+"""IMEC URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.9/topics/http/urls/
@@ -22,9 +22,10 @@ from django.views.generic import RedirectView
 # Use static() to add url mapping to serve static files during development (only)
 from django.conf import settings
 from django.conf.urls.static import static
+from dashboard import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('dashboard.urls')),
-
+    #url(r'^(?P<username>\w+)/', views.employeeHome, name='employeeHome'),
 ] +  static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

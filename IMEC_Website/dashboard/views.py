@@ -1,13 +1,20 @@
-from .models import Entry
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from itertools import chain
-# Create your views here.
-def index(request):
-	"""
-	View function for home page of site.
-	"""
 
+from django.contrib.auth.views import login as loginForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+
+from itertools import chain
+
+from IMEC import settings
+from .models import Entry, User, Employee
+from .forms import SignupForm, LoginForm
+
+import urllib
+
+
+def index(request):
 	# Render the HTML template index.html with the data in the context variable
 	return render(request, 'dashboard/index.html')
 
@@ -16,6 +23,48 @@ def scan(request):
 
 def search(request):
 	return render(request, 'dashboard/search.html')
+
+def login_page(request):
+	next = request.GET.get('next', '/employee')
+	if request.method == "POST":
+		username = request.POST['username']
+		password = request.POST['password']
+		user = authenticate(username=username, password=password)
+
+		if user is not None:
+			if user.is_active:
+				login(request, user)
+				return HttpResponseRedirect(next)
+			else:
+				return HttpResponse("Inactive user.")
+		else:
+			return HttpResponseRedirect("/login/")
+
+	return render(request, "dashboard/login.html", {'redirect_to': next})
+	# # if employee already logged in:
+	# 	# go directly to employeeHome
+	# if request.method == "POST":
+	# 	username = request.POST['username']
+	# 	password = request.POST['password']
+	# 	user = authenticate(username=username, password=password)
+	#
+	# 	if user is not None:# and user.is_active:
+    #         #if user.is_active:
+	# 		login(request, user)
+	# 		next = request.GET.get('next', r'^(?P<username>\w+)/')
+	# 		return HttpResponseRedirect(next)
+    #         # else:
+    #         #     return HttpResponse("Inactive user.")
+	# 	# else:
+	# 	# 	next = request.GET.get('next', '/')
+	# 	# 	return HttpResponseRedirect(next)
+	# next = request.GET.get('next', '/AnonymousUser')
+	# return render(request, "dashboard/login.html", {'redirect_to': next})
+
+# def employeeHome(request, username):
+def employeeHome(request):
+    #user = get_object_or_404(User, username=username)
+    return render(request, 'dashboard/employee.html', {'profile_user': request.user})
 
 def test(request):
 	return render(request, "dashboard/test.html")
