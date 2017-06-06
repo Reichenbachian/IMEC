@@ -25,9 +25,18 @@ class Entry(models.Model):
     			"unitsPerCase": self.unitsPerCase, \
     			"totalUnits": self.totalUnits}
 
+class GroupID(models.Model):
+    groupName = models.CharField(max_length=30, null=True)
+    issuedBy = models.ForeignKey(Employee, on_delete=models.CASCADE, null=True)
+    valid = models.BooleanField(default=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    def isValid(self):
+        return self.valid
+
 class VolunteerID(models.Model):
     idString = models.CharField(max_length=20, null=True)
-    issuedBy = models.CharField(max_length=60, null=True)
+    groupID = models.ForeignKey(GroupID, on_delete=models.CASCADE, null=True)
+    issuedBy = models.ForeignKey(Employee, on_delete=models.CASCADE)
     valid = models.BooleanField(default=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     def isValid(self):

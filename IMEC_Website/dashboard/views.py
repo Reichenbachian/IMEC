@@ -8,8 +8,8 @@ from django.contrib.auth import authenticate, login, logout
 from itertools import chain
 
 from IMEC import settings
-from .models import Entry, User, Employee
-from .forms import SignupForm, LoginForm
+from .models import Entry, User, Employee, GroupID, VolunteerID
+from .forms import LoginForm
 
 import urllib
 
@@ -41,30 +41,18 @@ def login_page(request):
 			return HttpResponseRedirect("/login/")
 
 	return render(request, "dashboard/login.html", {'redirect_to': next})
-	# # if employee already logged in:
-	# 	# go directly to employeeHome
-	# if request.method == "POST":
-	# 	username = request.POST['username']
-	# 	password = request.POST['password']
-	# 	user = authenticate(username=username, password=password)
-	#
-	# 	if user is not None:# and user.is_active:
-    #         #if user.is_active:
-	# 		login(request, user)
-	# 		next = request.GET.get('next', r'^(?P<username>\w+)/')
-	# 		return HttpResponseRedirect(next)
-    #         # else:
-    #         #     return HttpResponse("Inactive user.")
-	# 	# else:
-	# 	# 	next = request.GET.get('next', '/')
-	# 	# 	return HttpResponseRedirect(next)
-	# next = request.GET.get('next', '/AnonymousUser')
-	# return render(request, "dashboard/login.html", {'redirect_to': next})
 
 # def employeeHome(request, username):
 def employeeHome(request):
     #user = get_object_or_404(User, username=username)
-    return render(request, 'dashboard/employee.html', {'profile_user': request.user})
+	if request.method == 'POST':
+		# for now we're assuming that all POST requests are to create groupIDs
+		u = request.user
+		emp = u.employee
+		groupName = request.POST['groupName']
+		new_group_id = GroupID(groupName=groupName, issuedBy=emp)
+		new_group_id.save()
+	return render(request, 'dashboard/employee.html', {'profile_user': request.user})
 
 def test(request):
 	return render(request, "dashboard/test.html")

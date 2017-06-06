@@ -21,8 +21,9 @@
                 <!-- Scrolling Nav JavaScript -->
                 <script src="{% static 'dashboard/js/jquery.easing.min.js' %}">
                 </script>
-                <script src="{% static 'dashboard/js/scrolling-nav.js' %}">
+                <!-- <script src="{% static 'dashboard/js/scrolling-nav.js' %}"> -->
                 </script>
+                <script src="https://cdn.jsdelivr.net/jsbarcode/3.5.8/JsBarcode.all.min.js"></script>
             </meta>
         </meta>
     </head>
@@ -36,6 +37,47 @@
             {% endif %}
             <h1>You have reached employee.html</h1>
             <h3>This will become the page that creates volunteer ids</h3>
+        </div>
+        <br/>
+        <div class='container jumbotron' style='width:50%'>
+            <h3 align='center'>Create GroupID</h3>
+
+            <form class='form-horizontal' action='' method='post' id='group_id_maker'>
+                {% csrf_token %}
+                    <div class='form-group'>
+                        <label class='control-label col-sm-2' for='username'>Group Name:</label>
+                        <div class='col-sm-10'>
+                            <input class='form-control' name="groupName" id='groupName' placeholder="Group Name" type="text"/>
+                        </div>
+                    </div>
+                    <br>
+                    <div class='form-group'>
+                        <div class='col-sm-12'>
+                            <button class='btn btn-link' onclick='createGroupCode()'>Create Group</button>
+                            <script>
+                                function createGroupCode() {
+                                    //document.write("<svg id='groupBarcodeDisplay'></svg>");
+                                    groupIdString = document.getElementById("groupName").value;
+                                    var d = Date.now();
+                                    groupId = groupIdString + d;
+                                    JsBarcode("#groupBarcodeDisplay", groupId, {
+                                        displayValue:groupId
+                                    });
+                                }
+                                $(function() {
+                                    $("#group_id_maker").submit(function(event) {
+                                        // Stop form from submitting normally
+                                        event.preventDefault();
+                                        var theForm = $(this);
+                                        // Send the data using post
+                                        var posting = $.post( theForm.attr('action'), theForm.serialize() );
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+            </form>
+            <svg id='groupBarcodeDisplay'></svg>
         </div>
     </body>
 </html>

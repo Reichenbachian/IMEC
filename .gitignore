@@ -1,0 +1,3 @@
+*.pyc
+IMEC_Website/IMEC/settings.py
+IMEC_Website/dashboard/migrations/*
